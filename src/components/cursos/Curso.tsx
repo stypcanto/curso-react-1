@@ -1,21 +1,22 @@
-interface CursoProps {
-    imagen: string;
-    titulo: string;
-    subtitulo: string;
-  }
-
 
 //CursoProps es una interfaz que define el tipo de las propiedades que Curso espera recibir.
 //En este caso, Curso espera recibir tres propiedades: imagen, titulo y subtitulo, todas de tipo string.
 
-function Curso(props: CursoProps){
+
+interface CursoProps {
+    titulo: string;
+    subtitulo: string;
+    imagen: string;
+}
+
+const Curso = ({titulo, subtitulo, imagen}: CursoProps) =>{
     return(
         <>
          <div  className="tarjeta-curso">
-          <img src={props.imagen} alt={props.imagen} className="tarjeta-curso-img" />
+          <img src={imagen} alt={imagen} className="tarjeta-curso-img" />
          <div className="contenido">
-          <h2>{props.titulo}</h2>
-          <p>{props.subtitulo}</p>
+          <h2>{titulo}</h2>
+          <p>{subtitulo}</p>
          </div>
          
         </div>  

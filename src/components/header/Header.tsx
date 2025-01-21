@@ -1,4 +1,4 @@
-import Logo from "./Logo";
+import Logo from "../header/Logo";
 import MainMenu from "./MainMenu";
 
 function Header (){
