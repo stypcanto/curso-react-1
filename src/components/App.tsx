@@ -2,6 +2,7 @@
 import Header from "./header/Header";
 import './App.css'
 import Calculadora from "./calculadora";
+import Cuadricula from "./cursos/Cuadricula.js";
 
 
 //Creando un componnente
@@ -10,9 +11,9 @@ function App(){
     <> 
       <Header/>
       <main>
-        <h1>Simple Calculadora</h1>
+        
         <Calculadora nombre="Formulario de suma" />
-
+         <Cuadricula />
 
        </main>
     </>

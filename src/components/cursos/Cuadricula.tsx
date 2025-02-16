@@ -2,7 +2,8 @@ import Curso from "../cursos/Curso";
 
 function Cuadricula(){
   return(
-    <div className="cursos-container">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-5">
+
     <Curso 
     titulo = "Ruta: Lógica de programación" 
     subtitulo = "Si quieres dominar la lógica de programación y sus fundamentos, este es el camino ideal. Aprenderás"
