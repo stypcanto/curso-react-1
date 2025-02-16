@@ -1,5 +1,8 @@
 //UseState nos permite usar el Estado de los componentes funcionales
-import { useState } from 'react'; // Importa useState para gestionar estados
+//UserEffect nos permite manejar el ciclo de vida de los componentes
+// El Useeffect no se construye, se ejecuta directo
+
+import { useState, useEffect } from 'react'; // Importa useState para gestionar estados
 
 // Definición del componente Calculadora
 const Calculadora = ({ nombre }) => {
@@ -12,6 +15,19 @@ const Calculadora = ({ nombre }) => {
 
     // Estado para manejar el texto
     const [texto, setTexto] = useState(""); // Texto inicia vacío
+
+   // useEffect(() => {}) este es una plantilla que usa un solo parametro
+    // useEffect(() => {},[]) este es una plantilla que dos parametros
+   //useEffect se ejecuta cuando el componente va a ser montado
+   // El segundo parámetro es un array opcional
+   // El array será el listado de todos los estados que quiero controlar como
+   // disparadores de la función que escribí en el useEffect
+   useEffect(()=>{
+       console.log(new Date().getTime()) // Para obtener la varia deltiempo
+   }, [texto] ) // Elarray se actualiza solo si texto se actualiza
+   //Si no le paso array como segundo parametro , el useeffect vuelve a correr siempre
+   //que algun estado se actualice
+
 
     // Función para actualizar numero1 al cambiar el primer input
     const setNumber1 = (e) => {
