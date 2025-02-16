@@ -1,80 +1,68 @@
 //UseState nos permite usar el Estado de los componentes funcionales
-import {useState, useEffect} from 'react';
+import { useState } from 'react'; // Importa useState para gestionar estados
 
-interface CalculadoraProps {
-    nombre: string;
-    
-}
+// Definición del componente Calculadora
+const Calculadora = ({ nombre }) => {
 
-const Calculadora = ({nombre}: CalculadoraProps) => {
-   //puedo personalizar los nombres del state pero manteniendo nomenclatua
+    // Estado para manejar los números
     const [numeros, setNumeros] = useState({
-        numero1: 0,
-        numero2: 0
-    })
+        numero1: 0, // Valor inicial de numero1
+        numero2: 0  // Valor inicial de numero2
+    });
 
-  
-    
+    // Estado para manejar el texto
+    const [texto, setTexto] = useState(""); // Texto inicia vacío
 
+    // Función para actualizar numero1 al cambiar el primer input
     const setNumber1 = (e) => {
         setNumeros({
-            ...numeros,
-            numero1: parseInt(e.target.value)
-        })
-    }
+            ...numeros, // Mantiene el estado anterior
+            numero1: e.target.value // Solo actualiza numero1
+        });
+    };
 
-    const [texto,setTexto] = useState("")
+    return (
+        <>
+            {/* Muestra el nombre recibido por props */}
+            <h2>{nombre}</h2>
+            <form action="">
+                {/* Input para numero1 */}
+                <input
+                    type="number"
+                    value={numeros.numero1} // Conecta valor al estado
+                    name="numero1"
+                    onChange={setNumber1} // Llama a setNumber1 al cambiar
+                />
 
-      // Simula el ciclo de vida del componente
-    // Se ejecuta cuando el componente va a ser construido, pasa la primera vez
-    // El segundo parámetro es un array opcional
-    // el array será el listado de todos los estados que quiero controlar como
-    //disparadores de la actualización del useEffect
-    useEffect(() => {
-        console.log(new Date ().getTime())
-    }, [numeros])
- // si no le paso array como 2do parametro. El useeffect vuelve a correr siempre
- //que algún estadose actualice
+                {/* Input para numero2 */}
+                <input
+                    type="number"
+                    value={numeros.numero2} // Conecta valor al estado
+                    name="numero2"
+                    onChange={e => {
+                        setNumeros({
+                            ...numeros, // Mantiene el estado actual
+                            numero2: e.target.value // Actualiza numero2
+                        });
+                    }}
+                />
+            </form>
 
-    const setNumber2 = (e) =>{
-        setNumeros({
-            ...numeros,
-            numero2: parseInt(e.target.value)
-        })
-    }
-      
-    return(
-                <> 
-                <h2>{nombre}</h2>
-                <form action="">
-                 <input 
-                 type="number" 
-                 value={numeros.numero1} 
-                 name="numero1" 
-                 onChange={setNumber1}
-                 />
-    
-                  <input 
-                 type="number" 
-                 value={numeros.numero2} 
-                 name="numero2" 
-                 onChange={setNumber2}
-                 />
-    
-                 <input type="submit" name="enviar" value="Sumar"/>
-               </form>
-               <span>Resultado: {numeros.numero1 + numeros.numero2}</span>
-                <input type="text" onChange={(e) => {setTexto (e.target.value)}} />
-                <span>{texto}</span>
-                </>
-              
-            )
-        
-}
+            {/* Muestra la suma de numero1 y numero2 */}
+            <span>Resultado: {Number(numeros.numero1) + Number(numeros.numero2)}</span>
 
+            {/* Input para texto */}
+            <input
+                type="text"
+                onChange={(e) => {
+                    setTexto(e.target.value); // Actualiza el estado 'texto'
+                }}
+            />
+
+            {/* Muestra el texto en tiempo real */}
+            <span>{texto}</span>
+        </>
+    );
+};
 
 export default Calculadora;
-
-
-//Componentes Stateful : componente con estado
-//Componente Stateless : componente sin estado
